@@ -44,6 +44,7 @@
   "noAudioAvailable": "Для этого урока аудио пока не добавлено.",
   "lessonVideos": "Видео к уроку",
   "videoLabel": "Видео",
+  "openVideo": "Открыть видео",
   "noVideoAvailable": "Не удалось открыть видео.",
   "verifiedSources": "Проверенные источники",
   "sourceOpenError": "Не удалось открыть источник.",

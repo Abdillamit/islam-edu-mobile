@@ -145,6 +145,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get videoLabel => 'Видео';
 
   @override
+  String get openVideo => 'Открыть видео';
+
+  @override
   String get noVideoAvailable => 'Не удалось открыть видео.';
 
   @override

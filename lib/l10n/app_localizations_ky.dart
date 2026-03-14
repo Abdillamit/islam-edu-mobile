@@ -145,6 +145,9 @@ class AppLocalizationsKy extends AppLocalizations {
   String get videoLabel => 'Видео';
 
   @override
+  String get openVideo => 'Видеону ачуу';
+
+  @override
   String get noVideoAvailable => 'Видеону ачуу мүмкүн болгон жок.';
 
   @override

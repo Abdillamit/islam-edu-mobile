@@ -362,6 +362,12 @@ abstract class AppLocalizations {
   /// **'Видео'**
   String get videoLabel;
 
+  /// No description provided for @openVideo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Открыть видео'**
+  String get openVideo;
+
   /// No description provided for @noVideoAvailable.
   ///
   /// In ru, this message translates to:
