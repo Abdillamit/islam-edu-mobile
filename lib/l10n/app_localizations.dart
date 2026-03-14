@@ -350,6 +350,36 @@ abstract class AppLocalizations {
   /// **'Для этого урока аудио пока не добавлено.'**
   String get noAudioAvailable;
 
+  /// No description provided for @lessonVideos.
+  ///
+  /// In ru, this message translates to:
+  /// **'Видео к уроку'**
+  String get lessonVideos;
+
+  /// No description provided for @videoLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Видео'**
+  String get videoLabel;
+
+  /// No description provided for @noVideoAvailable.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось открыть видео.'**
+  String get noVideoAvailable;
+
+  /// No description provided for @verifiedSources.
+  ///
+  /// In ru, this message translates to:
+  /// **'Проверенные источники'**
+  String get verifiedSources;
+
+  /// No description provided for @sourceOpenError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не удалось открыть источник.'**
+  String get sourceOpenError;
+
   /// No description provided for @bookmarkAdded.
   ///
   /// In ru, this message translates to:

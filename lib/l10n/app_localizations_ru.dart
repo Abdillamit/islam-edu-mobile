@@ -139,6 +139,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noAudioAvailable => 'Для этого урока аудио пока не добавлено.';
 
   @override
+  String get lessonVideos => 'Видео к уроку';
+
+  @override
+  String get videoLabel => 'Видео';
+
+  @override
+  String get noVideoAvailable => 'Не удалось открыть видео.';
+
+  @override
+  String get verifiedSources => 'Проверенные источники';
+
+  @override
+  String get sourceOpenError => 'Не удалось открыть источник.';
+
+  @override
   String get bookmarkAdded => 'Урок сохранён в закладки.';
 
   @override

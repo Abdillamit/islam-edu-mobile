@@ -139,6 +139,21 @@ class AppLocalizationsKy extends AppLocalizations {
   String get noAudioAvailable => 'Бул сабак үчүн аудио азырынча жок.';
 
   @override
+  String get lessonVideos => 'Сабактагы видеолор';
+
+  @override
+  String get videoLabel => 'Видео';
+
+  @override
+  String get noVideoAvailable => 'Видеону ачуу мүмкүн болгон жок.';
+
+  @override
+  String get verifiedSources => 'Текшерилген булактар';
+
+  @override
+  String get sourceOpenError => 'Булакты ачуу мүмкүн болгон жок.';
+
+  @override
   String get bookmarkAdded => 'Сабак белгиленгендерге кошулду.';
 
   @override

@@ -95,6 +95,30 @@ class LessonDetailScreen extends ConsumerWidget {
                   ),
                 ],
               ),
+              if (lesson.videoResources.isNotEmpty) ...[
+                const SizedBox(height: 18),
+                Text(
+                  l10n.lessonVideos,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ...lesson.videoResources.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final video = entry.value;
+                  return Card(
+                    child: ListTile(
+                      leading: const Icon(Icons.play_circle_outline),
+                      title: Text('${l10n.videoLabel} ${index + 1}'),
+                      subtitle: Text(video.url),
+                      onTap: () => _openExternalUrl(
+                        context,
+                        video.url,
+                        fallbackMessage: l10n.noVideoAvailable,
+                      ),
+                    ),
+                  );
+                }),
+              ],
               const SizedBox(height: 18),
               Text(
                 l10n.lessonSteps,
@@ -109,6 +133,29 @@ class LessonDetailScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+              if (lesson.references.isNotEmpty) ...[
+                const SizedBox(height: 18),
+                Text(
+                  l10n.verifiedSources,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                ...lesson.references.map(
+                  (reference) => Card(
+                    child: ListTile(
+                      leading: const Icon(Icons.verified_outlined),
+                      title: Text(reference.title),
+                      subtitle: Text(reference.sourceName),
+                      trailing: const Icon(Icons.open_in_new),
+                      onTap: () => _openExternalUrl(
+                        context,
+                        reference.url,
+                        fallbackMessage: l10n.sourceOpenError,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
               const SizedBox(height: 16),
               PrimaryButton(
                 label: isCompleted ? l10n.completed : l10n.markCompleted,
@@ -145,15 +192,27 @@ class LessonDetailScreen extends ConsumerWidget {
       return;
     }
 
-    final uri = Uri.tryParse(audioUrl);
+    await _openExternalUrl(
+      context,
+      audioUrl,
+      fallbackMessage: l10n.noAudioAvailable,
+    );
+  }
+
+  Future<void> _openExternalUrl(
+    BuildContext context,
+    String url, {
+    required String fallbackMessage,
+  }) async {
+    final uri = Uri.tryParse(url);
     if (uri == null) {
-      _showMessage(context, l10n.noAudioAvailable);
+      _showMessage(context, fallbackMessage);
       return;
     }
 
     final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
     if (!opened && context.mounted) {
-      _showMessage(context, l10n.noAudioAvailable);
+      _showMessage(context, fallbackMessage);
     }
   }
 
