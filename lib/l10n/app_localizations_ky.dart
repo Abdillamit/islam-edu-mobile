@@ -139,6 +139,19 @@ class AppLocalizationsKy extends AppLocalizations {
   String get apiBaseUrlInvalid => 'URL туура эмес. Формат: http(s)://host:port';
 
   @override
+  String get apiAutoDetect => 'Серверди авто табуу';
+
+  @override
+  String get apiAutoDetecting => 'Изделүүдө...';
+
+  @override
+  String get apiAutoDetectSuccess => 'Сервер табылып, сакталды';
+
+  @override
+  String get apiAutoDetectFailure =>
+      'Сервер табылган жок. Wi-Fi жана backend иштеп жатканын текшериңиз.';
+
+  @override
   String get changeLanguage => 'Тилди өзгөртүү';
 
   @override

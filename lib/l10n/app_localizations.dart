@@ -350,6 +350,30 @@ abstract class AppLocalizations {
   /// **'Некорректный URL. Используйте формат http(s)://host:port'**
   String get apiBaseUrlInvalid;
 
+  /// No description provided for @apiAutoDetect.
+  ///
+  /// In ru, this message translates to:
+  /// **'Авто найти сервер'**
+  String get apiAutoDetect;
+
+  /// No description provided for @apiAutoDetecting.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поиск...'**
+  String get apiAutoDetecting;
+
+  /// No description provided for @apiAutoDetectSuccess.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сервер найден и сохранён'**
+  String get apiAutoDetectSuccess;
+
+  /// No description provided for @apiAutoDetectFailure.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сервер не найден. Проверьте Wi-Fi и что backend запущен.'**
+  String get apiAutoDetectFailure;
+
   /// No description provided for @changeLanguage.
   ///
   /// In ru, this message translates to:

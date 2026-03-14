@@ -139,6 +139,19 @@ class AppLocalizationsRu extends AppLocalizations {
       'Некорректный URL. Используйте формат http(s)://host:port';
 
   @override
+  String get apiAutoDetect => 'Авто найти сервер';
+
+  @override
+  String get apiAutoDetecting => 'Поиск...';
+
+  @override
+  String get apiAutoDetectSuccess => 'Сервер найден и сохранён';
+
+  @override
+  String get apiAutoDetectFailure =>
+      'Сервер не найден. Проверьте Wi-Fi и что backend запущен.';
+
+  @override
   String get changeLanguage => 'Сменить язык';
 
   @override
