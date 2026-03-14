@@ -14,7 +14,7 @@ class BookmarksService {
     required String lang,
     required String deviceId,
     int page = 1,
-    int limit = 100,
+    int limit = 50,
   }) async {
     final response = await _apiClient.get(
       '/bookmarks',

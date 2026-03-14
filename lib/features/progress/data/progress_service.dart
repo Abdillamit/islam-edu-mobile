@@ -27,7 +27,7 @@ class ProgressService {
     required String lang,
     required String deviceId,
     int page = 1,
-    int limit = 200,
+    int limit = 50,
   }) async {
     final response = await _apiClient.get(
       '/progress/completed',
