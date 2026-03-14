@@ -3,11 +3,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../constants/app_constants.dart';
 import '../errors/app_exception.dart';
+import '../storage/app_settings_provider.dart';
 
 final dioProvider = Provider<Dio>((ref) {
+  final settings = ref.watch(appSettingsProvider);
+  final configuredBaseUrl = settings.apiBaseUrl.trim();
+  final baseUrl = configuredBaseUrl.isNotEmpty
+      ? configuredBaseUrl
+      : AppConstants.defaultApiBaseUrl;
+
   final dio = Dio(
     BaseOptions(
-      baseUrl: AppConstants.defaultApiBaseUrl,
+      baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 15),
       receiveTimeout: const Duration(seconds: 20),
       sendTimeout: const Duration(seconds: 20),

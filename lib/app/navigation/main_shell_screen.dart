@@ -56,40 +56,79 @@ class _MainShellScreenState extends State<MainShellScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(titles[_currentIndex])),
       body: IndexedStack(index: _currentIndex, children: pages),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
-            label: l10n.homeTab,
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFFF4F7F4), Color(0xFFE8EEE9)],
+            ),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x22000000),
+                blurRadius: 18,
+                offset: Offset(0, 6),
+              ),
+            ],
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.grid_view_outlined),
-            selectedIcon: const Icon(Icons.grid_view_rounded),
-            label: l10n.categoriesTab,
+          child: NavigationBarTheme(
+            data: NavigationBarThemeData(
+              backgroundColor: Colors.transparent,
+              indicatorColor: const Color(0xFFD7EBDD),
+              iconTheme: WidgetStateProperty.resolveWith((states) {
+                if (states.contains(WidgetState.selected)) {
+                  return const IconThemeData(
+                    color: Color(0xFF0E5B49),
+                    size: 24,
+                  );
+                }
+                return const IconThemeData(color: Color(0xFF46524D), size: 22);
+              }),
+            ),
+            child: NavigationBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              height: 72,
+              labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+              selectedIndex: _currentIndex,
+              onDestinationSelected: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.home_outlined),
+                  selectedIcon: const Icon(Icons.home_rounded),
+                  label: l10n.homeTab,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.grid_view_outlined),
+                  selectedIcon: const Icon(Icons.grid_view_rounded),
+                  label: l10n.categoriesTab,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.route_outlined),
+                  selectedIcon: const Icon(Icons.route_rounded),
+                  label: l10n.learningPathTab,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.bookmark_outline),
+                  selectedIcon: const Icon(Icons.bookmark_rounded),
+                  label: l10n.bookmarksTab,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.person_outline),
+                  selectedIcon: const Icon(Icons.person_rounded),
+                  label: l10n.profileTab,
+                ),
+              ],
+            ),
           ),
-          NavigationDestination(
-            icon: const Icon(Icons.route_outlined),
-            selectedIcon: const Icon(Icons.route),
-            label: l10n.learningPathTab,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.bookmark_outline),
-            selectedIcon: const Icon(Icons.bookmark),
-            label: l10n.bookmarksTab,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.person_outline),
-            selectedIcon: const Icon(Icons.person),
-            label: l10n.profileTab,
-          ),
-        ],
+        ),
       ),
     );
   }

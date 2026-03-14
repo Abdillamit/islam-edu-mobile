@@ -117,6 +117,28 @@ class AppLocalizationsKy extends AppLocalizations {
   String get feedbackSupport => 'Пикир / колдоо';
 
   @override
+  String get apiBaseUrlLabel => 'Backend API дареги';
+
+  @override
+  String get apiBaseUrlHint => 'Мисалы: http://192.168.1.10:3000';
+
+  @override
+  String get apiBaseUrlCurrent => 'Учурдагы API';
+
+  @override
+  String get apiBaseUrlHelp =>
+      'Телефондо ошол эле Wi-Fi тармагындагы компьютериңиздин IP дарегин жазыңыз. Бош калса демейки системалык дарек колдонулат.';
+
+  @override
+  String get apiBaseUrlSave => 'Даректи сактоо';
+
+  @override
+  String get apiBaseUrlSaved => 'API дареги сакталды.';
+
+  @override
+  String get apiBaseUrlInvalid => 'URL туура эмес. Формат: http(s)://host:port';
+
+  @override
   String get changeLanguage => 'Тилди өзгөртүү';
 
   @override

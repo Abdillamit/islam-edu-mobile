@@ -308,6 +308,48 @@ abstract class AppLocalizations {
   /// **'Обратная связь / поддержка'**
   String get feedbackSupport;
 
+  /// No description provided for @apiBaseUrlLabel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Адрес backend API'**
+  String get apiBaseUrlLabel;
+
+  /// No description provided for @apiBaseUrlHint.
+  ///
+  /// In ru, this message translates to:
+  /// **'Например: http://192.168.1.10:3000'**
+  String get apiBaseUrlHint;
+
+  /// No description provided for @apiBaseUrlCurrent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Текущий API'**
+  String get apiBaseUrlCurrent;
+
+  /// No description provided for @apiBaseUrlHelp.
+  ///
+  /// In ru, this message translates to:
+  /// **'На телефоне укажите IP вашего компьютера в одной Wi-Fi сети. Пустое значение = системный адрес по умолчанию.'**
+  String get apiBaseUrlHelp;
+
+  /// No description provided for @apiBaseUrlSave.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранить адрес'**
+  String get apiBaseUrlSave;
+
+  /// No description provided for @apiBaseUrlSaved.
+  ///
+  /// In ru, this message translates to:
+  /// **'Адрес API сохранён.'**
+  String get apiBaseUrlSaved;
+
+  /// No description provided for @apiBaseUrlInvalid.
+  ///
+  /// In ru, this message translates to:
+  /// **'Некорректный URL. Используйте формат http(s)://host:port'**
+  String get apiBaseUrlInvalid;
+
   /// No description provided for @changeLanguage.
   ///
   /// In ru, this message translates to:

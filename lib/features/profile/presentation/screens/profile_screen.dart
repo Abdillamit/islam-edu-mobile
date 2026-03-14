@@ -1,19 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/storage/app_settings_provider.dart';
 import '../../../../core/utils/context_l10n.dart';
 import '../../../../shared/widgets/app_error_view.dart';
 import '../../../../shared/widgets/app_loading_view.dart';
 import '../providers/profile_provider.dart';
 
-class ProfileScreen extends ConsumerWidget {
+class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+  late final TextEditingController _apiBaseUrlController;
+  bool _apiBaseUrlInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _apiBaseUrlController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _apiBaseUrlController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
     final settings = ref.watch(appSettingsProvider);
     final statsAsync = ref.watch(profileStatsProvider);
+
+    final effectiveApiBaseUrl = settings.apiBaseUrl.isNotEmpty
+        ? settings.apiBaseUrl
+        : AppConstants.defaultApiBaseUrl;
+
+    if (!_apiBaseUrlInitialized) {
+      _apiBaseUrlController.text = settings.apiBaseUrl;
+      _apiBaseUrlInitialized = true;
+    }
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
@@ -52,6 +82,71 @@ class ProfileScreen extends ConsumerWidget {
                         .setLanguageCode(value);
                     ref.invalidate(profileStatsProvider);
                   },
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.apiBaseUrlLabel,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _apiBaseUrlController,
+                  keyboardType: TextInputType.url,
+                  decoration: InputDecoration(hintText: l10n.apiBaseUrlHint),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '${l10n.apiBaseUrlCurrent}: $effectiveApiBaseUrl',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: Colors.black54),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.apiBaseUrlHelp,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: Colors.black54),
+                ),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: FilledButton.tonalIcon(
+                    onPressed: () async {
+                      final success = await ref
+                          .read(appSettingsProvider.notifier)
+                          .setApiBaseUrl(_apiBaseUrlController.text);
+                      if (!context.mounted) {
+                        return;
+                      }
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            success
+                                ? l10n.apiBaseUrlSaved
+                                : l10n.apiBaseUrlInvalid,
+                          ),
+                        ),
+                      );
+
+                      if (success) {
+                        ref.invalidate(profileStatsProvider);
+                      }
+                    },
+                    icon: const Icon(Icons.save_outlined),
+                    label: Text(l10n.apiBaseUrlSave),
+                  ),
                 ),
               ],
             ),

@@ -116,6 +116,29 @@ class AppLocalizationsRu extends AppLocalizations {
   String get feedbackSupport => 'Обратная связь / поддержка';
 
   @override
+  String get apiBaseUrlLabel => 'Адрес backend API';
+
+  @override
+  String get apiBaseUrlHint => 'Например: http://192.168.1.10:3000';
+
+  @override
+  String get apiBaseUrlCurrent => 'Текущий API';
+
+  @override
+  String get apiBaseUrlHelp =>
+      'На телефоне укажите IP вашего компьютера в одной Wi-Fi сети. Пустое значение = системный адрес по умолчанию.';
+
+  @override
+  String get apiBaseUrlSave => 'Сохранить адрес';
+
+  @override
+  String get apiBaseUrlSaved => 'Адрес API сохранён.';
+
+  @override
+  String get apiBaseUrlInvalid =>
+      'Некорректный URL. Используйте формат http(s)://host:port';
+
+  @override
   String get changeLanguage => 'Сменить язык';
 
   @override

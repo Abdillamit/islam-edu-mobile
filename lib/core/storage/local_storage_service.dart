@@ -12,6 +12,7 @@ class LocalStorageService {
   static const _languageCodeKey = 'language_code';
   static const _onboardingCompletedKey = 'onboarding_completed';
   static const _deviceIdKey = 'device_id';
+  static const _apiBaseUrlKey = 'api_base_url';
 
   Future<String> getLanguageCode() async {
     final preferences = await SharedPreferences.getInstance();
@@ -44,5 +45,20 @@ class LocalStorageService {
     final generated = uuid.v4();
     await preferences.setString(_deviceIdKey, generated);
     return generated;
+  }
+
+  Future<String> getApiBaseUrl() async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getString(_apiBaseUrlKey) ?? '';
+  }
+
+  Future<void> setApiBaseUrl(String value) async {
+    final preferences = await SharedPreferences.getInstance();
+    if (value.isEmpty) {
+      await preferences.remove(_apiBaseUrlKey);
+      return;
+    }
+
+    await preferences.setString(_apiBaseUrlKey, value);
   }
 }
